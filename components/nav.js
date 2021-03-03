@@ -3,8 +3,13 @@ import { useState } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars } from '@fortawesome/free-solid-svg-icons'
 
-export default function Nav() {
+export default function Nav({handleClick}) {
   const [navbarOpen, setNavbarOpen] = useState(false);
+
+  const changeView = (value) => {
+    setNavbarOpen(false)
+    handleClick(value);
+  }
 
   return (
     <>
@@ -35,21 +40,19 @@ export default function Nav() {
             id="example-navbar-danger"
           >
             <ul className="flex flex-col lg:flex-row list-none lg:ml-auto">
-              <li className="nav-item">
+              <li className="nav-item" onClick={() => changeView(0)}>
                 <a
                   className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
                   href="#pablo"
                 >
-                  <i className="fab fa-facebook-square text-lg leading-lg text-white opacity-75"></i>
                   <span className="ml-2">Calendar</span>
                 </a>
               </li>
-              <li className="nav-item">
+              <li className="nav-item" onClick={() => changeView(1)}>
                 <a
                   className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
                   href="#pablo"
                 >
-                  <i className="fab fa-twitter text-lg leading-lg text-white opacity-75"></i>
                   <span className="ml-2">Alerts</span>
                 </a>
               </li>
