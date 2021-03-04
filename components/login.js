@@ -1,7 +1,10 @@
 import isEmail from 'validator/lib/isEmail';
 import { useState } from 'react'
+import { useRouter } from 'next/router'   
+
 
 export default function Login({ handleClick }) {
+    const router = useRouter()
 
     const [email, setEmail] = useState("")
     const [pass, setPass] = useState("")
@@ -23,6 +26,7 @@ export default function Login({ handleClick }) {
             throwErr("invalid email address")
         }else{
             //TODO call login API
+            router.push('/dashboard')
             setError(false)
         }
     }

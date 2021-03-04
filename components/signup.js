@@ -1,8 +1,10 @@
 import { useState } from 'react'
 import isEmail from 'validator/lib/isEmail';
+import { useRouter } from 'next/router'   
 
 
 export default function SignUp({ handleClick }) {
+    const router = useRouter()
 
     const [name, setName] = useState("")
     const [email, setEmail] = useState("")
@@ -46,6 +48,7 @@ export default function SignUp({ handleClick }) {
             throwErr("invalid email address")
         }else{
             //TODO call signUp API
+            router.push('/dashboard')
             setError(false)
         }
     }

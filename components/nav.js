@@ -43,7 +43,6 @@ export default function Nav({handleClick}) {
               <li className="nav-item" onClick={() => changeView(0)}>
                 <a
                   className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
-                  href="#pablo"
                 >
                   <span className="ml-2">Calendar</span>
                 </a>
@@ -51,9 +50,16 @@ export default function Nav({handleClick}) {
               <li className="nav-item" onClick={() => changeView(1)}>
                 <a
                   className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
-                  href="#pablo"
                 >
                   <span className="ml-2">Alerts</span>
+                </a>
+              </li>
+              <li className="nav-item" onClick={() => console.log("logout")}>
+                <a
+                  className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
+                  href="/"
+                >
+                  <span className="ml-2">Logout</span>
                 </a>
               </li>
             </ul>
