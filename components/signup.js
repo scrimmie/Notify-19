@@ -1,6 +1,15 @@
 import { useState } from 'react'
 import isEmail from 'validator/lib/isEmail';
-import { useRouter } from 'next/router'   
+import { useRouter } from 'next/router' 
+import { createUser } from '../components/functions/helperFunctions'
+
+
+//fetcher funtion for swr
+// const fetcher = (url) => fetch(url).then((res) => res.json())
+
+//calls api for create user
+//  const { data, error } = useSwr('/api/users', fetcher)
+
 
 
 export default function SignUp({ handleClick }) {
@@ -47,9 +56,15 @@ export default function SignUp({ handleClick }) {
         }else if(!isEmail(email)){
             throwErr("invalid email address")
         }else{
-            //TODO call signUp API
-            router.push('/dashboard')
-            setError(false)
+            createUser({
+                name: name,
+                email: email,
+                dob: DOB,
+                password: pass
+            }).then((res) => {
+                setError(false)
+                router.push('/dashboard')
+            }) 
         }
     }
 
