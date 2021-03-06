@@ -7,6 +7,7 @@ import AlertsView from "../components/alerts";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faQuestionCircle } from '@fortawesome/free-solid-svg-icons'
 
+
 export default function Dashboard() {
   const [view, setView] = useState(0);
 
@@ -28,7 +29,7 @@ export default function Dashboard() {
       >
         <Nav handleClick={nav} />
         {view == 0 ? (
-          <CalendarView className="flex-grow" />
+          <CalendarView className="flex-grow"/>
         ) : (
           <AlertsView className="flex-grow" />
         )}

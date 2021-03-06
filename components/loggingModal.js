@@ -5,41 +5,9 @@ import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { faTimesCircle } from "@fortawesome/free-solid-svg-icons";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 
+let locations = require('../components/locations.json');
+
 export default function Modal({ modalClick, date }) {
-  const options = [
-    { value: "Hagerty Library", label: "Hagerty Library", key: 1 },
-    {
-      value: "Center for Automation Technology",
-      label: "Center for Automation Technology",
-      key: 2,
-    },
-    { value: "Chestnut Square", label: "Chestnut Square", key: 3 },
-    { value: "Creese Student Center", label: "Creese Student Center", key: 4 },
-    { value: "Disque Hall", label: "Disque Hall", key: 5 },
-    {
-      value: "Drexel Recreation Center",
-      label: "Drexel Recreation Center",
-      key: 6,
-    },
-    {
-      value: "Library Learning Terrace",
-      label: "Library Learning Terrace",
-      key: 7,
-    },
-    {
-      value: "Northside Dining Terrace",
-      label: "Northside Dining Terrace",
-      key: 8,
-    },
-    {
-      value: "Pearlstein Business Learning Center",
-      label: "Pearlstein Business Learning Center",
-      key: 9,
-    },
-    { value: "Randell Hall", label: "Randell Hall", key: 10 },
-    { value: "University Crossings", label: "University Crossings", key: 11 },
-    { value: "URBN Center", label: "URBN Center", key: 12 },
-  ];
 
   const setShowModal = ({ out }) => {
     modalClick(out);
@@ -106,7 +74,7 @@ export default function Modal({ modalClick, date }) {
                     >
                       <p className="pl-1">Location</p>
                       <Select
-                        options={options}
+                        options={locations.places}
                         key={`${field}-${idx}`}
                         onChange={(selected) =>
                           handleChange(idx, selected.value, "Location")
@@ -246,3 +214,4 @@ export default function Modal({ modalClick, date }) {
     </>
   );
 }
+
