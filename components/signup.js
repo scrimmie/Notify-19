@@ -62,6 +62,7 @@ export default function SignUp({ handleClick }) {
                 dob: DOB,
                 password: pass
             }).then((res) => {
+                localStorage.setItem('User', email);
                 setError(false)
                 router.push('/dashboard')
             }) 

@@ -1,20 +1,28 @@
 import Select from "react-select";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { faTimesCircle } from "@fortawesome/free-solid-svg-icons";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import { logData } from "../components/functions/helperFunctions"
 
 let locations = require('../components/locations.json');
 
 export default function Modal({ modalClick, date }) {
 
+  const [email, setEmail] = useState();
+
+  useEffect(() => {
+    let email = localStorage.getItem('User')
+    setEmail(email)
+  }, []);
+
   const setShowModal = ({ out }) => {
     modalClick(out);
   };
 
-  const storeUserData = ({ oudatat }) => {
-    //store the user data
+  const storeUserData = (outdata) => {
+    return logData(email, outdata, date, positive)
   };
 
   const [fields, setFields] = useState([{ Location: null }]);
@@ -87,7 +95,7 @@ export default function Modal({ modalClick, date }) {
                         type="time"
                         placeholder="Time-In"
                         onChange={(selected) =>
-                          handleChange(idx, selected.target.value, "Time-In")
+                          handleChange(idx, new Date(date.getYear(), date.getMonth(), date.getDay(), selected.target.value.substring(0,2), selected.target.value.substring(3,5), 0), "Time-In")
                         }
                         className="pl-6 pr-4 py-2 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow outline-none focus:outline-none focus:shadow-outline w-full"
                       />
@@ -101,8 +109,8 @@ export default function Modal({ modalClick, date }) {
                       <input
                         type="time"
                         placeholder="Time-Out"
-                        onChange={(selected) =>
-                          handleChange(idx, selected.target.value, "Time-Out")
+                        onChange={(selected) => 
+                          handleChange(idx, new Date(date.getYear(), date.getMonth(), date.getDay(), selected.target.value.substring(0,2), selected.target.value.substring(3,5), 0), "Time-Out")
                         }
                         className="pl-6 pr-2 py-2 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow outline-none focus:outline-none focus:shadow-outline w-full"
                       />
@@ -200,8 +208,11 @@ export default function Modal({ modalClick, date }) {
                 type="button"
                 style={{ transition: "all .15s ease" }}
                 onClick={() => {
-                  setShowModal(false);
-                  console.log(fields);
+                  storeUserData(fields).then(() => {
+                    setShowModal(false);
+                  }).catch((err) => {
+                    console.log("error logging data")
+                  })
                 }}
               >
                 Save Changes

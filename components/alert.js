@@ -26,7 +26,7 @@ export default function AlertCard({ alert }) {
         </div>
       </div>
       <div className="flex justify-self-end self-center pr-5">
-            <DateCard Date={alert.date} />
+            <DateCard date={alert.date} />
           </div>
       <h5 className="font-semibold text-black overflow-clip col-span-3 p-2 bg-gray-200 m-2 rounded-md">
         {alert.description}

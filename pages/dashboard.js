@@ -2,17 +2,32 @@ import Head from "next/head";
 import background from "../public/images/map.png";
 import Nav from "../components/nav";
 import CalendarView from "../components/calendar";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import AlertsView from "../components/alerts";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faQuestionCircle } from '@fortawesome/free-solid-svg-icons'
+import { getAlerts } from "../components/functions/helperFunctions"
+import { useRouter } from 'next/router'  
 
 
 export default function Dashboard() {
+  const router = useRouter()
   const [view, setView] = useState(0);
+  const [alerts, setAlerts] = useState();
+
+
+  useEffect(() => {
+    let email = localStorage.getItem('User')
+    if (!email){
+      router.push('/')
+    }else{
+      getAlerts(email).then((results) => {
+        setAlerts(results.data)
+      })
+    }
+  }, []);
 
   const nav = (childData) => {
-    console.log(childData);
     setView(childData);
   };
 
@@ -31,7 +46,7 @@ export default function Dashboard() {
         {view == 0 ? (
           <CalendarView className="flex-grow"/>
         ) : (
-          <AlertsView className="flex-grow" />
+          <AlertsView className="flex-grow" alerts={alerts}/>
         )}
         <div className="flex w-full text-center border-t border-grey p-4 pin-b justify-end mt-5">
           <button

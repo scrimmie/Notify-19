@@ -29,6 +29,7 @@ export default function Login({ handleClick }) {
             //TODO call login API
             loginUser(email, pass).then((res) => {
                 setError(false)
+                localStorage.setItem('User', email);
                 router.push('/dashboard')
             }).catch((error) => {throwErr('Invalid Username or Password')})
         }

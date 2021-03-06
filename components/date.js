@@ -1,6 +1,7 @@
-export default function DateCard({ Date }) {
-    const dateArray = Date.toDateString().split(' ')
-    console.log("hi")
+export default function DateCard({ date }) {
+    const formattedDate = new Date(date)
+    const dateArray = formattedDate.toDateString().split(' ')
+
   return (
     
     <>

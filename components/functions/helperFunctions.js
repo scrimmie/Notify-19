@@ -18,3 +18,18 @@ export const loginUser = (email, password) => {
         })
 }
 
+export const logData = (email, log, date, tested) => {
+    return axios.post('/api/user/logData', {
+            id: email,
+            log: log,
+            date: date,
+            tested: tested
+        })
+}
+
+export const getAlerts = (email) => {
+    return axios.post('/api/user/getAlerts', {
+            email: email
+        })
+}
+

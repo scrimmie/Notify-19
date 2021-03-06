@@ -8,6 +8,7 @@ datasource db {
 
 generator client {
   provider = "prisma-client-js"
+  previewFeatures = ["createMany"]
 }
 
 model User {
@@ -28,7 +29,8 @@ model Log {
 }
 
 model Location {
-  place       String   @id
+  id        Int        @id @default(autoincrement())
+  place       String  
   timeIn      DateTime
   timeOut     DateTime
   description String

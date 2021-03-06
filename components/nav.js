@@ -2,8 +2,12 @@ import Image from "next/image";
 import { useState } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars } from '@fortawesome/free-solid-svg-icons'
+import { useRouter } from 'next/router'  
+
 
 export default function Nav({handleClick}) {
+  const router = useRouter()
+
   const [navbarOpen, setNavbarOpen] = useState(false);
 
   const changeView = (value) => {
@@ -54,10 +58,9 @@ export default function Nav({handleClick}) {
                   <span className="ml-2">Alerts</span>
                 </a>
               </li>
-              <li className="nav-item" onClick={() => console.log("logout")}>
+              <li className="nav-item" onClick={() => {localStorage.removeItem('User'); router.push('/')}}>
                 <a
                   className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
-                  href="/"
                 >
                   <span className="ml-2">Logout</span>
                 </a>
