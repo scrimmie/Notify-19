@@ -81,7 +81,7 @@ export default async function userLoginHandler(req, res) {
                 location: alert.place,
                 description: alert.description,
                 date: new Date(alert.timeIn),
-                image: "/images/Drexel.png"
+                image: "/images/drexel.png"
             }
             formattedAlerts.push(formattedObj)
         })
