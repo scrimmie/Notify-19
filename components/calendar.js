@@ -52,7 +52,7 @@ export default function CalendarView({ userLogs, removeLog, addLog }) {
   return (
     <>
       {showModal ? <Modal modalClick={modalIn} date={date} addLog={addLog}></Modal> : <></>}
-      {!userLogs ? <></> :
+      {!userLogs ? <div className="h-screen w-screen"></div> :
         <div className="grid m-auto justify-items-center mt-10">
           <Calendar
             maxDetail="month"
