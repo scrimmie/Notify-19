@@ -52,7 +52,7 @@ export default function Login({ handleClick }) {
             }
             <div className="pt-5" ></div>
             <button className="text-blue-500 background-transparent font-bold underline px-3 py-1 text-xs outline-none focus:outline-none mr-1 mb-1" type="button" style={{ transition: "all .15s ease" }} onClick={showSignUp}>
-                Dont have and account?
+                Dont have an account?
             </button>
         </>
     )
