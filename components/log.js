@@ -10,7 +10,7 @@ export default function LogCard({ log, date, remove, index }) {
 
   return (
     <>
-      <div className=" w-screen max-w-lg max-h-screen grid grid-rows-3 grid-cols-3 shadow-lg bg-gray-400 bg-opacity-70 mt-2 mb-2 ">
+      <div className=" w-screen max-w-lg max-h-screen grid grid-rows-3 grid-cols-3 shadow-lg bg-gray-400 bg-opacity-70 mt-2 mb-2 rounded-lg	">
         {/* <div className="justify-self-start self-center w-auto">
       </div> */}
         <button className="col-span-3 justify-self-center my-5" onClick={() => {remove(index)}}>

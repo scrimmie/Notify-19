@@ -4,7 +4,7 @@ import Image from 'next/image'
 export default function AlertCard({ alert }) {
   return (
     <>
-    <div className="w-screen max-w-lg max-h-screen grid grid-rows-2 grid-cols-3 grid-flow-row-dense shadow-lg content-center auto-rows-min auto-cols-min bg-gray-400 bg-opacity-70 mt-2 mb-2 ">
+    <div className="w-screen max-w-lg max-h-screen grid grid-rows-2 grid-cols-3 grid-flow-row-dense shadow-lg content-center auto-rows-min auto-cols-min bg-gray-400 bg-opacity-70 mt-2 mb-2 rounded-lg	">
       <div className="flex w-24 h-24  m-5 self-center">
         <Image
           src={alert.image}
