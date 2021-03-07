@@ -29,7 +29,7 @@ export default async function l0ggingHandler(req, res) {
 
     switch (method) {
       case 'POST':
-        await prisma.log.create({
+        let output = await prisma.log.create({
             data: {
               date: date,
               tested: tested,
@@ -47,7 +47,7 @@ export default async function l0ggingHandler(req, res) {
               }
           })
 
-        res.status(200).json({ message: "successful" })
+        res.status(200).json({ log: output })
         break
       default:
         res.setHeader('Allow', ['POST'])

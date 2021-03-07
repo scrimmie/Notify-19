@@ -6,7 +6,7 @@ import { useState, useEffect } from "react";
 import AlertsView from "../components/alerts";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faQuestionCircle } from '@fortawesome/free-solid-svg-icons'
-import { getAlerts } from "../components/functions/helperFunctions"
+import { getAlerts, getLogs, deleteLog } from "../components/functions/helperFunctions"
 import { useRouter } from 'next/router'  
 
 
@@ -14,15 +14,50 @@ export default function Dashboard() {
   const router = useRouter()
   const [view, setView] = useState(0);
   const [alerts, setAlerts] = useState();
+  const [logs, setLogs] = useState();
+  const [email, setEmail] = useState();
 
+
+  const removeLog = (index) => {
+    let removedLog = logs[index]
+    deleteLog(email, removedLog.id).then(() => {
+      let array = [...logs]
+      array.splice(index, 1);
+      setLogs(array)
+    }).catch(() => {
+      console.log("error removing log")
+    })
+  };
+
+  const addLog = (newLog) => {
+    setLogs([...logs, newLog]);
+  };
+
+  const genLocations = (outdata) => {
+      let locationsArray = []
+      outdata.forEach(element => {
+        let obj ={
+          description: element.Description,
+          place: element.Location,
+          timeIn: element["Time-In"].toISOString(),
+          timeOut: element["Time-Out"].toISOString()
+        }
+        locationsArray.push(obj)
+      });
+      return locationsArray
+  }
 
   useEffect(() => {
     let email = localStorage.getItem('User')
+    setEmail(email)
     if (!email){
       router.push('/')
     }else{
       getAlerts(email).then((results) => {
         setAlerts(results.data)
+      })
+      getLogs(email).then((results) => {
+        setLogs(results.data.logs)
       })
     }
   }, []);
@@ -44,7 +79,7 @@ export default function Dashboard() {
       >
         <Nav handleClick={nav} />
         {view == 0 ? (
-          <CalendarView className="flex-grow"/>
+          <CalendarView className="flex-grow" userLogs={logs} removeLog={removeLog} addLog={addLog}/>
         ) : (
           <AlertsView className="flex-grow" alerts={alerts}/>
         )}

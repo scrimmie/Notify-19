@@ -33,3 +33,15 @@ export const getAlerts = (email) => {
         })
 }
 
+export const getLogs = (email) => {
+    return axios.post('/api/user/getLogs', {
+            email: email
+        })
+}
+
+export const deleteLog = (email, logID) => {
+    return axios.post('/api/user/deleteLog', {
+            email: email,
+            logID: logID
+        })
+}

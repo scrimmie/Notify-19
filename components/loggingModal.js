@@ -8,7 +8,7 @@ import { logData } from "../components/functions/helperFunctions";
 
 let locations = require("../components/locations.json");
 
-export default function Modal({ modalClick, date }) {
+export default function Modal({ modalClick, date, addLog }) {
   const [email, setEmail] = useState();
   const [error, setError] = useState(false);
   const [errorMessage, setErrorMessage] = useState(null);
@@ -62,13 +62,13 @@ export default function Modal({ modalClick, date }) {
             <div className="flex items-start justify-between p-5 border-b border-solid border-gray-300 rounded-t">
               <h3 className="text-3xl font-semibold">
                 {"Logging - " +
-                  date.getMonth() +
+                  (date.getMonth() + 1) +
                   "/" +
                   date.getDate() +
                   "/" +
                   date.getFullYear()}
               </h3>
-              <span className="bg-transparent text-black opacity-5 h-6 w-6 text-2xl block outline-none focus:outline-none">
+              <span className="bg-transparent text-black h-6 w-6 text-2xl block outline-none focus:outline-none" onClick={() => {setShowModal(false)}}>
                 ×
               </span>
             </div>
@@ -243,7 +243,8 @@ export default function Modal({ modalClick, date }) {
                 style={{ transition: "all .15s ease" }}
                 onClick={() => {
                   storeUserData(fields)
-                    .then(() => {
+                    .then((res) => {
+                      addLog(res.data.log)
                       setError(false);
                       setShowModal(false);
                     })
