@@ -17,7 +17,9 @@ export default async function getLogsHandler(req, res) {
         res.status(401).end(`User not Found`)
     }
 
-    
+    let today = new Date()
+    let twoWeeksAgo = new Date()
+    twoWeeksAgo.setDate(twoWeeksAgo.getDate() - 14)
 
     switch (method) {
       case 'POST':
@@ -25,6 +27,10 @@ export default async function getLogsHandler(req, res) {
             where: {
                 userEmail: {
                   equals: email 
+                },
+                date: {
+                  gte: twoWeeksAgo,
+                  lt:  today
                 },
               },
             include: {
