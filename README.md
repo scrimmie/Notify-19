@@ -2,6 +2,8 @@
 
 This project is a Next.js app created to help students and faculty on a campus track their possible exposure to COVID-19. This allows users to log locations that they have visited in a day as well as offers them alerts to notify them of possible exposure.
 
+The application can be viewed here: [https://notify-19.herokuapp.com/](https://notify-19.herokuapp.com/)
+
 ## Getting Started (Running this project locally)
 
 First run the following command in the rood directory (ensure you are using node v14.0.0 or higher):
