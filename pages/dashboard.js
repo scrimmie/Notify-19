@@ -16,6 +16,8 @@ export default function Dashboard() {
   const [alerts, setAlerts] = useState();
   const [logs, setLogs] = useState();
   const [email, setEmail] = useState();
+  const [showAlert, setShowAlert] = useState(false);
+
 
 
   const removeLog = (index) => {
@@ -54,6 +56,13 @@ export default function Dashboard() {
       router.push('/')
     }else{
       getAlerts(email).then((results) => {
+        results.data.Exposed.forEach((element) => {
+          var d = new Date();
+          d.setDate(d.getDate() - 3);
+          if (new Date(element.date) >= d){
+            setShowAlert(true)
+          }
+        })
         setAlerts(results.data)
       })
       getLogs(email).then((results) => {
@@ -77,7 +86,7 @@ export default function Dashboard() {
         className="flex flex-col min-h-screen bg-cover bg-center bg-fixed bg-white "
         style={{ backgroundImage: `url(${background})` }}
       >
-        <Nav handleClick={nav} />
+        <Nav handleClick={nav} showAlert={showAlert}/>
         {view == 0 ? (
           <CalendarView className="flex-grow" userLogs={logs} removeLog={removeLog} addLog={addLog}/>
         ) : (

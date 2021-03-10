@@ -7,9 +7,16 @@ import LogCard from "../components/log"
 export default function CalendarView({ userLogs, removeLog, addLog }) {
   const [value, onChange] = useState(new Date());
   const [showModal, setShowModal] = useState(false);
+  // const [buttonClick, setbuttonClick] = useState(false);
+
   const [date, setDate] = useState(new Date());
   const [dateArray, setDateArray] = useState([]);
 
+  // useEffect(() => {
+  //   if(buttonClick){
+  //     setShowModal(true)
+  //   }
+  // }, [date]);
 
   const calendarClick = (value) => {
     setDate(new Date(value));
@@ -64,7 +71,7 @@ export default function CalendarView({ userLogs, removeLog, addLog }) {
             tileDisabled={tileDisable}
           />
           <button
-            onClick={() => setShowModal(true)}
+            onClick={() => {setDate(new Date());setShowModal(true)}}
             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full w-28 md:w-32 lg:w-48 mt-10"
           >
             Log Today

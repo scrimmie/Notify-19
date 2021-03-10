@@ -5,7 +5,7 @@ import { faBars } from '@fortawesome/free-solid-svg-icons'
 import { useRouter } from 'next/router'  
 
 
-export default function Nav({handleClick}) {
+export default function Nav({handleClick, showAlert}) {
   const router = useRouter()
 
   const [navbarOpen, setNavbarOpen] = useState(false);
@@ -55,7 +55,9 @@ export default function Nav({handleClick}) {
                 <a
                   className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
                 >
-                  <span className="ml-2">Alerts</span>
+                  <span className="ml-2">Alerts
+                  {showAlert ? <span class="absolute inline-block w-2 h-2 transform translate-x-1/2 -translate-y-1/2 bg-red-600 rounded-full"></span> : <></>}
+                  </span>
                 </a>
               </li>
               <li className="nav-item" onClick={() => {localStorage.removeItem('User'); router.push('/')}}>

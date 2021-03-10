@@ -103,9 +103,9 @@ export default function Modal({ modalClick, date, addLog }) {
                           handleChange(
                             idx,
                             new Date(
-                              date.getYear(),
+                              date.getFullYear(),
                               date.getMonth(),
-                              date.getDay(),
+                              date.getDate(),
                               selected.target.value.substring(0, 2),
                               selected.target.value.substring(3, 5),
                               0
@@ -129,9 +129,9 @@ export default function Modal({ modalClick, date, addLog }) {
                           handleChange(
                             idx,
                             new Date(
-                              date.getYear(),
+                              date.getFullYear(),
                               date.getMonth(),
-                              date.getDay(),
+                              date.getDate(),
                               selected.target.value.substring(0, 2),
                               selected.target.value.substring(3, 5),
                               0
